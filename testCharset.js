@@ -19,6 +19,13 @@ function isCharsetLengthDifferenceLessEqualToOne(a, b) {
     }
 }
 
+function doesCharsetContainsAnySpace(a) {
+    if(a.indexOf(" ") !== -1) {
+        return true;
+    }
+    return false;
+}
+
 
 function testCharset() {
     for(let charset in charset_jp1C) {
@@ -33,6 +40,10 @@ function testCharset() {
         if(!result) {
             console.warn(`\x1b[34m[CHARSET LENGTH DIFFERENCE BIGGER THAN ONE]\x1b[0m ID: \x1b[32m${charset} \x1b[0mThe length difference between evn and odd charset is bigger than one (\x1b[35m${Math.abs(evn_charset.length - odd_charset.length)}\x1b[0m)❌\x1b[0m`);
         }
+        result = doesCharsetContainsAnySpace(evn_charset);
+        if(result) console.log(`\x1b[34m[CHARSET CONTAINS THE SPACE CHARACTER]\x1b[0m \x1b[32m${charset}_evn\x1b[0m contains a space character ❌`);
+        result = doesCharsetContainsAnySpace(odd_charset);
+        if(result) console.log(`\x1b[34m[CHARSET CONTAINS THE SPACE CHARACTER]\x1b[0m \x1b[32m${charset}_odd\x1b[0m contains a space character ❌`);
     }
 }
 
